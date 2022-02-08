@@ -1,0 +1,18 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Vendi un orologio{% endblock %}
+
+{% block infosite %}
+    <ul class="contenitore2">
+        <li class="shadow-lg p-3 mb-5 bg-body" id="cont">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <hr/>
+                <input class="btn btn-primary btn-lg" type="submit" value="Inserisci">
+            </form>
+        </li>
+    </ul>
+{% endblock %}
+

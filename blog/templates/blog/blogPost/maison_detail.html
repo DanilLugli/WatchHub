@@ -1,0 +1,27 @@
+{% extends 'home_base.html' %}
+
+{% block content %}
+    <div class="">
+        <div class="">
+            <h3>Orologi {{ maison }} presenti sul sito</h3>
+        </div>
+    </div>
+    <div class="">
+        <ul class="contenitore">
+            {% for watch in  maison.watch_set.all %}
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <img id="orologi_foto" src="{{ watch.photo.url }}" height="185" width="153" alt="sans">
+                    <hr>
+                    <h4>{{ watch.maison }}</h4>
+                    <h6>{{ watch.model }}</h6>
+                </li>
+            {% empty %}
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <h3>Non sono stati caricati ancora orologi {{ maison }}</h3>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <hr/>
+
+{% endblock content %}

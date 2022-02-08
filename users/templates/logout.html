@@ -1,0 +1,29 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+    <div class="">
+        <div class="h3user">
+            <h3> Logout Effettuato con Successo </h3>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="">
+        <div class="">
+            <ul class="contenitore2">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <h3> Logout avvenuto con successo! </h3>
+                    <h5> Effettua un nuovo <a href="{% url 'login' %}"> LOGIN </a> ! </h5>
+                    <a href="{% url 'Watch-Hub-Home' %}">
+                        <button type="button" class="btn btn-primary btn-lg">Home</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+{% endblock content %}

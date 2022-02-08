@@ -1,0 +1,33 @@
+{% extends 'blog/blogPost/base_list.html' %}
+
+{% block list_title %}Watch List{% endblock %}
+{% block content_title %}Orologi presenti sul sito{% endblock %}
+
+
+{% block object %}     <li class="shadow-lg p-3 mb-5 bg-body">
+    <form method="GET">
+        <label for="order"> Ordina per: </label>
+        <select class="form-select m-2 text-center" name="order" id="order">
+            <option value="maison"> Maison </option>
+            <option value="model"> Model </option>
+            <option value="owner"> Proprietario </option>
+        </select>
+        <!-- valore del select box rimane quello selezionato -->
+        <script type="text/javascript">
+            document.getElementById('order').value = "{{request.GET.order}}";
+        </script>
+        <input class="btn btn-primary btn-lg" type="submit" style="width: auto">
+    </form>
+     </li>
+    {% for watch in condition_watch %}
+        <a href="{% url 'blog:blogPostDetail' watch.pk %}">
+            <li class="shadow-lg p-3 mb-5 bg-body">
+                <img id="orologi_foto" src="{{ watch.photo.url }}" height="60%" width="auto">
+                <hr>
+                <h4>{{ watch.maison }}</h4>
+                <h6>{{ watch.model }}</h6>
+            </li>
+        </a>
+    {% endfor %}
+
+{% endblock %}

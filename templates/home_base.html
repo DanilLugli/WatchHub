@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+{% endblock %}
+{% block navbar %}
+    <div class="nav_bar">
+        <hr>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle nav_bar"
+                   data-bs-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-expanded="false"
+                   style="color:black">ACQUISTA UN OROLOGIO</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'blog:MaisonList' %}">Maison</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blog:conditionWatchList' %}">Categoria</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class ="dropdown-item" href="{% url 'blog:blogPostList' %}">Tutti</a></li>
+                    {% for item in cat_menu %}
+                        <li><a class="dropdown-item" href="{% url 'blog:conditionWatch' item %}">{{ item }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                   data-bs-toggle="dropdown"
+                   href="#"
+                   role="button"
+                   aria-expanded="false"
+                   style="color:black">VENDI UN OROLOGIO</a>
+                <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'blog:blogPostCreate' %}">{{ user.username }} Vendi Da Privato</a></li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'user-create' %}">Registrati Per Vendere</a></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Login Per Vendere</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:favoriteWatch' %}" style="color:black">I MIEI OROLOGI PREFERITI</a>
+                </li>
+            {% endif %}
+            {% if not user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="color:black; text-transform: uppercase">LOGIN</a>
+                </li>
+            {% endif %}
+
+
+        </ul>
+        <hr>
+    </div>
+{% endblock %}
+
+
+{% block search %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block infosite %}{% endblock %}
+
+{% block favorite %}{%  endblock %}
+
+{% block footer %}
+    <footer class="foo">
+        <hr>
+        <ul class="fooul">
+            <li id="item5" style="margin-top: 1%;">
+                <img src="/static/image/icons8-persona-di-sesso-maschile-30.png" alt="icon"/>
+                <p>DANIL LUGLI, UNIMORE, matr. 128504</p>
+            </li>
+            <li id="item6">
+                <a id="a1" href="#">Chi siamo</a>
+                <a id="a2" href="{% url 'Watch-Hub-Home' %}">Home</a>
+            </li>
+        </ul>
+    </footer>
+{% endblock %}
+

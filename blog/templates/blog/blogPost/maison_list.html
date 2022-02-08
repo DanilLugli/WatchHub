@@ -1,0 +1,28 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Lista Maison{% endblock %}
+
+{% block infosite %}
+
+
+    <div class="row m-3 justify-content-center">
+        <div class="col-md-6 text-center">
+            <h3> Elenco delle maison sul sito </h3>
+        </div>
+    </div>
+    <hr/>
+    <div class="row m-3 justify-content-left">
+            <ul class="contenitore3">
+                {% for maison in maison_list %}
+                    <a href="{% url 'blog:MaisonDetail' maison.pk %}">
+                        <li class="shadow-lg p-3 mb-5 bg-body">
+                            <h3>{{ maison }}</h3>
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+
+{% endblock %}
+

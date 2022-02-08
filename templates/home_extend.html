@@ -1,0 +1,88 @@
+{% extends 'home_base.html' %}
+{% load static %}
+
+{% block title %}Watch Hub{%  endblock %}
+
+{% block search %}
+    <div class="search">
+        <div class="block-search">
+            <h5>Scegli tra tutti gli orologi esistenti in vendita.</h5>
+            <h3>CERCA IL MODELLO DEI TUOI SOGNI</h3>
+            <h6>Cerca, trova e acquista! I venditori sono tutti verificati dal nostro sito. </h6>
+            <form class="form1" method=POST action="{% url 'blog:watchSearch' %}">
+                {% csrf_token %}
+                <input class="input-search rounded-end" type="search" placeholder="Scrivi il modello del tuo orologio..." aria-label="Cerca" name="searched">
+                <button type="submit" class="btn btn-primary rounded-start" style="margin-top: 0px;">Cerca</button>
+            </form>
+        </div>
+
+        <div class="block-img rounded-3 rounded">
+            <img src="/static/image/casey-connell-wGeNkndPSn4-unsplash.jpg" id="foto_home" alt="casey-connell">
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block infosite %}
+    <h2>SCOPRI IL NOSTRO POTENZIALE</h2>
+    <h5>Registrati o Accedi per avere tutte le funzionalità</h5>
+    <ul class="contenitore info">
+        {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}">
+                <li class="info-item shadow-lg p-3 mb-5 bg-body">
+                    <img src="/static/image/1F9D1-1F3FB_color.png" alt="persona">
+                    <h3>LOGIN</h3>
+                    <p>Accedi per comprare l'orologio dei tuoi sogni</p>
+                </li>
+            </a>
+        {% else %}
+            <a href="{% url 'profile' %}">
+                <li class="info-item shadow-lg p-3 mb-5 bg-body">
+                    <img src="/static/image/1F9D1-1F3FB_color.png" alt="persona">
+                    <h3>{{ user.username }}</h3>
+                    <p>Hai effettuato l'accesso, clicca qui per andare al tuo profilo</p>
+                </li>
+            </a>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <a href="{% url 'user-create' %}">
+            <li class="info-item shadow-lg p-3 mb-5 bg-body">
+                <img src="/static/image/1F512_color.png" alt="lucchetto">
+                <h3>REGISTRATI</h3>
+                <p>Per avere più funzionalità</p>
+            </li>
+        </a>
+    {% else %}
+            <a href="{% url 'blog:favoriteWatch' %}">
+            <li class="info-item shadow-lg p-3 mb-5 bg-body">
+                <img src="/static/image/1F512_color.png" alt="lucchetto">
+                <h3>I TUOI OROLOGI PREFERITI</h3>
+                <p>Visualizza tutti i tuoi orologi preferiti</p>
+            </li>
+        </a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'blog:suggestionWatch' %}">
+            <li class="info-item shadow-lg p-3 mb-5 bg-body">
+                <img src="/static/image/1F4BC_color.png" alt="valigetta">
+                <h3>OROLOGI CONSIGLIATI</h3>
+                <p>Orologi consigliati per {{ user.username }}</p>
+            </li>
+        </a>
+    {% endif %}
+    </ul>
+    </div>
+{% endblock %}
+
+{% block favorite %}
+    <div class="div shadow p-3 mb-5 bg-white">
+        <h2>GUARDA TUTTI GLI OROLOGI PRESENTI SUL SITO</h2>
+        <h5>Tutti gli orologi all'interno del sito sono di proprietà di utenti verificati da noi di Watch Hub.</h5>
+        <ul class="contenitore">
+            <a href="{% url 'blog:blogPostList' %}">
+                <button type="button" class=" btn btn-primary btn-lg" style="width: auto;">OROLOGI</button>
+            </a>
+
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'blog/blogPost/base_list.html' %}
+
+{% block list_title %}Watch List{% endblock %}
+{% block content_title %}Categorie di Orologi{% endblock %}
+
+
+{% block object %}
+    {% for item in condition_watch_list %}
+            <a href="{% url 'blog:conditionWatch' item %}">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <h3 style="text-transform: uppercase">{{ item }}</h3>
+                    {% if item.condition == 'New' %}
+                        <p>Lista di tutti gli orologi in vendita che come condizione sono nuovi. All'interno troverai anche orologi venduti da privati ma mai utilizzati.</p>
+                    {% endif %}
+                    {% if item.condition == 'Used' %}
+                        <p>Lista di tutti gli orologi in vendita che come condizione sono usati.</p>
+                    {% endif %}
+                    {% if item.condition == 'Vintage' %}
+                        <p>Lista di tutti gli orologi in vendita Vintage. Ricordiamo che un vintage può essere anche in condizioni ottime. </p>
+                    {% endif %}
+                </li>
+            </a>
+    {% endfor %}
+{% endblock %}

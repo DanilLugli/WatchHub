@@ -1,0 +1,27 @@
+{% extends 'home_base.html' %}
+
+{% block list_title %}Watch{% endblock %}
+{% block content_title %}{% endblock %}
+
+
+{% block content %}
+    {% if searched %}
+        <h3>You Searched For {{ searched }} </h3>
+        <hr/>
+        <ul class="contenitore">
+        {% for watch in watch_list %}
+            <a href="{% url 'blog:blogPostDetail' watch.pk %}">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <img id="orologi_foto" src="{{ watch.photo.url }}" height="60%" width="auto">
+                    <hr>
+                    <h4>{{ watch.maison }}</h4>
+                    <h6>{{ watch.model }}</h6>
+                </li>
+            </a>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h1>Errore di ricerca</h1>
+    {% endif %}
+
+{% endblock %}

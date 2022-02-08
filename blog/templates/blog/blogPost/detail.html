@@ -1,0 +1,42 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Watch: {{ object.model }}{% endblock %}
+
+{% block infosite %}
+    <div class="search">
+        <div class="block-search">
+            <ul class="contenitore">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <a href="{% url 'blog:MaisonDetail' object.maison.pk %}"><h5>{{ object.maison }}</h5></a>
+                    <h6><b>Model:</b> {{ object.model }}</h6>
+                    <p><b>Reference:</b> {{ object.reference }}</p>
+                    <p><b>Movement:</b> {{ object.movement }}</p>
+                    <hr>
+                    {% if user.is_authenticated %}
+                        <p><b>Venditore: </b>{{ object.owner }}</p>
+                        <p><b>State of Watch:</b> {{ object.condition }}</p>
+                        <p><b>Price:</b> {{ object.price }}€</p>
+                        <form class="form1">
+                            <button type="button" class="btnBuy btn-primary">Procedi all'acquisto</button>
+                        </form>
+                        <img id="img-payment" src="/static/image/googlepay-applepay-wifi-mastercard.png" alt="pagamento">
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <div class="block-img rounded-3 rounded">
+            <img src="{{ watch.photo.url }}" alt="casey-connell">
+            {% if user.is_authenticated %}
+                <form action="{% url 'blog:like_post' watch.id %}" method='POST' class="form1">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-primary" name="post_id" value="{{ watch.id }}">Like</button>
+                    {% if user.id == watch.owner.id %}
+                        <a href="{% url 'blog:blogPostUpdate' watch.id %}"><button type="button" class="btn btn-outline-success">Edit</button></a>
+                    {% endif %}
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

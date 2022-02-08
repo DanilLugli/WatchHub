@@ -1,0 +1,39 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Register{% endblock %}
+
+
+{% block content %}
+    <div class="">
+        <div class="h3user">
+            <h3> REGISTRATI! </h3>
+            <h5>Da utente registrato hai accesso a molte più informazioni sugli orologi, oltre ad avere la possibilità di acquistare.</h5>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <ul class="contenitore2">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class ="btn btn-primary btn-lg" type="submit" value="Registrati">
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="">
+        <div class="">
+            <p>
+                Hai già un account?
+                <a href="{% url 'login' %}"> Login! </a>
+            </p>
+        </div>
+    </div>
+
+{% endblock content %}

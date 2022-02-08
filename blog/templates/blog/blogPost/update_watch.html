@@ -1,0 +1,14 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Aggiorna il tuo orologio{% endblock %}
+
+{% block infosite %}
+    <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <hr/>
+            <input type="submit" value="Aggiorna">
+        </form>
+{% endblock %}
+

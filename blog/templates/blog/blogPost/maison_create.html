@@ -1,0 +1,13 @@
+{% extends 'home_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Inserisci una nuova Maison{% endblock %}
+
+{% block infosite %}
+    <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Inserisci">
+        </form>
+{% endblock %}
+

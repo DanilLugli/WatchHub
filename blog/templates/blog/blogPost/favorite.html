@@ -1,0 +1,19 @@
+{% extends 'blog/blogPost/base_list.html' %}
+
+{% block list_title %}Watch List{% endblock %}
+{% block content_title %}Tutti gli orologi a cui hai messo mi piace{% endblock %}
+
+
+{% block object %}
+    {% for watch in list_like %}
+            <a href="{% url 'blog:blogPostDetail' watch.pk %}">
+                <li class="shadow-lg p-3 mb-5 bg-body">
+                    <img id="orologi_foto" src="{{ watch.photo.url }}" height="60%" width="auto">
+                    <hr>
+                    <h4>{{ watch.maison }}</h4>
+                    <h6>{{ watch.model }}</h6>
+                </li>
+            </a>
+    {% endfor %}
+
+{% endblock %}
